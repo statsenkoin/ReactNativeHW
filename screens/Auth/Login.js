@@ -1,31 +1,3 @@
-// import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function Login({ navigation }) {
-//   return (
-//     <View style={styles.container}>
-//       <Text
-//         style={styles.text}
-//         onPress={() => navigation.navigate('Registration')}>
-//         Login логін
-//       </Text>
-//       {/* <StatusBar style="auto" /> */}
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   text: {
-//     fontFamily: 'Lobster_400Regular',
-//   },
-// });
-
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -71,7 +43,7 @@ export default function Login({ navigation }) {
           source={require('../../assets/background.png')}
           style={styles.background}>
           <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : null}
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{
               flex: 1,
               justifyContent: 'flex-end',
@@ -85,16 +57,26 @@ export default function Login({ navigation }) {
                   placeholder="Адреса електронної пошти"
                   onFocus={() => setIsKeyboardVisible(true)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
-                  onChangeText={(value) => setCredentials(value)}
+                  onChangeText={(value) =>
+                    setCredentials((prevData) => ({
+                      ...prevData,
+                      email: value,
+                    }))
+                  }
                   value={credentials.email}
                 />
                 <TextInput
                   style={styles.input}
                   placeholder="Пароль"
-                  //   secureTextEntry={true}
+                  secureTextEntry={true}
                   onFocus={() => setIsKeyboardVisible(true)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
-                  onChangeText={(value) => setCredentials(value)}
+                  onChangeText={(value) =>
+                    setCredentials((prevData) => ({
+                      ...prevData,
+                      password: value,
+                    }))
+                  }
                   value={credentials.password}
                 />
                 <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>
@@ -109,7 +91,6 @@ export default function Login({ navigation }) {
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
-
         <StatusBar style="auto" />
       </View>
     </TouchableWithoutFeedback>
@@ -119,7 +100,6 @@ export default function Login({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#eaeaea',
   },
   background: {
     flex: 1,
@@ -176,8 +156,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderWidth: 1,
     borderStyle: 'solid',
-
     fontFamily: 'Roboto_400Regular',
+    fontSize: 16,
+    color: '#212121',
 
     borderColor: '#e8e8e8',
     // borderColor: '#ccc',
@@ -190,7 +171,6 @@ const styles = StyleSheet.create({
     marginTop: 43,
     height: 50,
     fontFamily: 'Roboto_400Regular',
-
     fontSize: 16,
     textAlign: 'center',
     color: '#fff',
@@ -202,7 +182,6 @@ const styles = StyleSheet.create({
     marginBottom: 78,
     textAlign: 'center',
     fontFamily: 'Roboto_400Regular',
-
     fontSize: 16,
     color: '#1B4371',
   },

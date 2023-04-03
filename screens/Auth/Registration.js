@@ -1,29 +1,3 @@
-// // import { StatusBar } from 'expo-status-bar';
-// import { StyleSheet, Text, View } from 'react-native';
-
-// export default function Registration({ navigation }) {
-//   return (
-//     <View style={styles.container}>
-//       <Text style={styles.text} onPress={() => navigation.navigate('Login')}>
-//         Registration регістрація
-//       </Text>
-//       {/* <StatusBar style="auto" /> */}
-//     </View>
-//   );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     backgroundColor: '#fff',
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//   },
-//   text: {
-//     fontFamily: 'Roboto_500Medium',
-//   },
-// });
-
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import {
@@ -118,7 +92,7 @@ export default function Registration({ navigation }) {
                 <TextInput
                   style={styles.input}
                   placeholder="Пароль"
-                  //   secureTextEntry={true}
+                  secureTextEntry={true}
                   onFocus={() => setIsKeyboardVisible(true)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
                   onChangeText={(value) =>
@@ -141,7 +115,6 @@ export default function Registration({ navigation }) {
             </View>
           </KeyboardAvoidingView>
         </ImageBackground>
-
         <StatusBar style="auto" />
       </View>
     </TouchableWithoutFeedback>
@@ -151,7 +124,6 @@ export default function Registration({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#eaeaea',
   },
   background: {
     flex: 1,
@@ -207,6 +179,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     borderWidth: 1,
     borderStyle: 'solid',
+    fontFamily: 'Roboto_400Regular',
+    fontSize: 16,
+    color: '#212121',
 
     borderColor: '#e8e8e8',
     // borderColor: '#ccc',
@@ -218,6 +193,7 @@ const styles = StyleSheet.create({
     padding: 13,
     marginTop: 43,
     height: 50,
+    fontFamily: 'Roboto_400Regular',
     fontSize: 16,
     textAlign: 'center',
     color: '#fff',
@@ -228,6 +204,7 @@ const styles = StyleSheet.create({
     marginTop: 16,
     marginBottom: 78,
     textAlign: 'center',
+    fontFamily: 'Roboto_400Regular',
     fontSize: 16,
     color: '#1B4371',
   },
