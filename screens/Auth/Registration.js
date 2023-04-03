@@ -47,12 +47,12 @@ const initialData = {
   email: '',
   password: '',
   // avatar: null,
-  avatar: './assets/avatar.png',
+  avatar: require('../../assets/avatar.png'),
 };
 
 export default function Registration({ navigation }) {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
-  const [credentals, setCredentals] = useState(initialData);
+  const [credentials, setCredentials] = useState(initialData);
 
   const hideKeyboard = () => {
     setIsKeyboardVisible(false);
@@ -61,8 +61,8 @@ export default function Registration({ navigation }) {
 
   const handleSubmit = () => {
     hideKeyboard();
-    console.log('credentals :>> ', credentals);
-    setCredentals(initialData);
+    console.log('credentials :>> ', credentials);
+    setCredentials(initialData);
   };
 
   return (
@@ -74,19 +74,18 @@ export default function Registration({ navigation }) {
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{
-              marginBottom: isKeyboardVisible ? 55 : 0,
+              flex: 1,
+              justifyContent: 'flex-end',
+              marginBottom: isKeyboardVisible ? -190 : 0,
             }}>
             <View style={styles.formContainer}>
               <View style={styles.form}>
                 <View style={styles.avatarWrap}>
-                  <Image
-                    style={styles.avatar}
-                    source={require('../../assets/avatar.png')}
-                  />
-                  {credentals.avatar ? (
-                    <AntDesign name="pluscircleo" style={styles.avatarAdd} />
-                  ) : (
+                  <Image style={styles.avatar} source={credentials.avatar} />
+                  {credentials.avatar ? (
                     <AntDesign name="closecircleo" style={styles.avatarClose} />
+                  ) : (
+                    <AntDesign name="pluscircleo" style={styles.avatarAdd} />
                   )}
                 </View>
                 <Text style={styles.formTitle}>Реєстрація</Text>
@@ -96,9 +95,12 @@ export default function Registration({ navigation }) {
                   onFocus={() => setIsKeyboardVisible(true)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
                   onChangeText={(value) =>
-                    setCredentals((prevData) => ({ ...prevData, login: value }))
+                    setCredentials((prevData) => ({
+                      ...prevData,
+                      login: value,
+                    }))
                   }
-                  value={credentals.login}
+                  value={credentials.login}
                 />
                 <TextInput
                   style={styles.input}
@@ -106,9 +108,12 @@ export default function Registration({ navigation }) {
                   onFocus={() => setIsKeyboardVisible(true)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
                   onChangeText={(value) =>
-                    setCredentals((prevData) => ({ ...prevData, email: value }))
+                    setCredentials((prevData) => ({
+                      ...prevData,
+                      email: value,
+                    }))
                   }
-                  value={credentals.email}
+                  value={credentials.email}
                 />
                 <TextInput
                   style={styles.input}
@@ -117,12 +122,12 @@ export default function Registration({ navigation }) {
                   onFocus={() => setIsKeyboardVisible(true)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
                   onChangeText={(value) =>
-                    setCredentals((prevData) => ({
+                    setCredentials((prevData) => ({
                       ...prevData,
                       password: value,
                     }))
                   }
-                  value={credentals.password}
+                  value={credentials.password}
                 />
                 <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>
                   <Text style={styles.button}>Зареєструватись</Text>

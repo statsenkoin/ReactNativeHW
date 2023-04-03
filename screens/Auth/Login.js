@@ -51,7 +51,7 @@ const initialData = {
 
 export default function Login({ navigation }) {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
-  const [credentals, setCredentals] = useState(initialData);
+  const [credentials, setCredentials] = useState(initialData);
 
   const hideKeyboard = () => {
     setIsKeyboardVisible(false);
@@ -60,8 +60,8 @@ export default function Login({ navigation }) {
 
   const handleSubmit = () => {
     hideKeyboard();
-    console.log('credentals :>> ', credentals);
-    setCredentals(initialData);
+    console.log('credentials :>> ', credentials);
+    setCredentials(initialData);
   };
 
   return (
@@ -70,50 +70,44 @@ export default function Login({ navigation }) {
         <ImageBackground
           source={require('../../assets/background.png')}
           style={styles.background}>
-          {/* <KeyboardAvoidingView
-            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-            // style={{
-            //   marginBottom: isKeyboardVisible ? 55 : 0,
-            //           }}
-          > */}
-          <View style={styles.formContainer}>
-            <View style={styles.form}>
-              <Text style={styles.formTitle}>Увійти</Text>
-              <TextInput
-                style={styles.input}
-                placeholder="Адреса електронної пошти"
-                onFocus={() => setIsKeyboardVisible(true)}
-                onSubmitEditing={() => setIsKeyboardVisible(false)}
-                onChangeText={(value) =>
-                  setCredentals((prevData) => ({ ...prevData, email: value }))
-                }
-                value={credentals.email}
-              />
-              <TextInput
-                style={styles.input}
-                placeholder="Пароль"
-                //   secureTextEntry={true}
-                onFocus={() => setIsKeyboardVisible(true)}
-                onSubmitEditing={() => setIsKeyboardVisible(false)}
-                onChangeText={(value) =>
-                  setCredentals((prevData) => ({
-                    ...prevData,
-                    password: value,
-                  }))
-                }
-                value={credentals.password}
-              />
-              <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>
-                <Text style={styles.button}>Увійти</Text>
-              </TouchableOpacity>
-              <Text
-                style={styles.text}
-                onPress={() => navigation.navigate('Registration')}>
-                Немає аккаунта? Зареєструватися
-              </Text>
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : null}
+            style={{
+              flex: 1,
+              justifyContent: 'flex-end',
+              marginBottom: isKeyboardVisible ? -190 : 0,
+            }}>
+            <View style={styles.formContainer}>
+              <View style={styles.form}>
+                <Text style={styles.formTitle}>Увійти</Text>
+                <TextInput
+                  style={styles.input}
+                  placeholder="Адреса електронної пошти"
+                  onFocus={() => setIsKeyboardVisible(true)}
+                  onSubmitEditing={() => setIsKeyboardVisible(false)}
+                  onChangeText={(value) => setCredentials(value)}
+                  value={credentials.email}
+                />
+                <TextInput
+                  style={styles.input}
+                  placeholder="Пароль"
+                  //   secureTextEntry={true}
+                  onFocus={() => setIsKeyboardVisible(true)}
+                  onSubmitEditing={() => setIsKeyboardVisible(false)}
+                  onChangeText={(value) => setCredentials(value)}
+                  value={credentials.password}
+                />
+                <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>
+                  <Text style={styles.button}>Увійти</Text>
+                </TouchableOpacity>
+                <Text
+                  style={styles.text}
+                  onPress={() => navigation.navigate('Registration')}>
+                  Немає аккаунта? Зареєструватися
+                </Text>
+              </View>
             </View>
-          </View>
-          {/* </KeyboardAvoidingView> */}
+          </KeyboardAvoidingView>
         </ImageBackground>
 
         <StatusBar style="auto" />
