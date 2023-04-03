@@ -26,6 +26,7 @@ export default function Login({ navigation }) {
   const [credentials, setCredentials] = useState(initialData);
   const [emailOnFocus, setEmailOnFocus] = useState(false);
   const [passwordOnFocus, setPasswordOnFocus] = useState(false);
+  const [isPasswordSecured, setIsPasswordSecured] = useState(true);
 
   const hideKeyboard = () => {
     setIsKeyboardVisible(false);
@@ -78,29 +79,36 @@ export default function Login({ navigation }) {
                   inputMode="email"
                   keyboardType="email-address"
                 />
-                <TextInput
-                  style={
-                    passwordOnFocus
-                      ? [styles.input, styles.inputOnFocus]
-                      : styles.input
-                  }
-                  placeholder="Пароль"
-                  placeholderTextColor="#bdbdbd"
-                  secureTextEntry={true}
-                  onFocus={() => {
-                    setIsKeyboardVisible(true);
-                    setPasswordOnFocus(true);
-                  }}
-                  onBlur={() => setPasswordOnFocus(false)}
-                  onSubmitEditing={() => setIsKeyboardVisible(false)}
-                  onChangeText={(value) =>
-                    setCredentials((prevData) => ({
-                      ...prevData,
-                      password: value,
-                    }))
-                  }
-                  value={credentials.password}
-                />
+                <View>
+                  <TextInput
+                    style={
+                      passwordOnFocus
+                        ? [styles.input, styles.inputOnFocus]
+                        : styles.input
+                    }
+                    placeholder="Пароль"
+                    placeholderTextColor="#bdbdbd"
+                    secureTextEntry={isPasswordSecured}
+                    onFocus={() => {
+                      setIsKeyboardVisible(true);
+                      setPasswordOnFocus(true);
+                    }}
+                    onBlur={() => setPasswordOnFocus(false)}
+                    onSubmitEditing={() => setIsKeyboardVisible(false)}
+                    onChangeText={(value) =>
+                      setCredentials((prevData) => ({
+                        ...prevData,
+                        password: value,
+                      }))
+                    }
+                    value={credentials.password}
+                  />
+                  <Text
+                    style={styles.passwordSecured}
+                    onPress={() => setIsPasswordSecured(!isPasswordSecured)}>
+                    {isPasswordSecured ? 'Показати' : 'Приховати'}
+                  </Text>
+                </View>
                 <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>
                   <Text style={styles.button}>Увійти</Text>
                 </TouchableOpacity>
@@ -194,6 +202,17 @@ const styles = StyleSheet.create({
   inputOnFocus: {
     backgroundColor: '#fff',
     borderColor: '#ff6c00',
+  },
+  passwordSecured: {
+    position: 'absolute',
+    right: 16,
+    top: 20,
+    paddingTop: 10,
+    paddingBottom: 10,
+    fontFamily: 'Roboto_400Regular',
+    fontSize: 16,
+    color: '#1B4371',
+    backgroundColor: 'transparent',
   },
   button: {
     padding: 13,
