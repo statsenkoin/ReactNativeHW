@@ -24,6 +24,8 @@ const initialData = {
 export default function Login({ navigation }) {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [credentials, setCredentials] = useState(initialData);
+  const [emailOnFocus, setEmailOnFocus] = useState(false);
+  const [passwordOnFocus, setPasswordOnFocus] = useState(false);
 
   const hideKeyboard = () => {
     setIsKeyboardVisible(false);
@@ -53,9 +55,18 @@ export default function Login({ navigation }) {
               <View style={styles.form}>
                 <Text style={styles.formTitle}>Увійти</Text>
                 <TextInput
-                  style={styles.input}
+                  style={
+                    emailOnFocus
+                      ? [styles.input, styles.inputOnFocus]
+                      : styles.input
+                  }
                   placeholder="Адреса електронної пошти"
-                  onFocus={() => setIsKeyboardVisible(true)}
+                  placeholderTextColor="#bdbdbd"
+                  onFocus={() => {
+                    setIsKeyboardVisible(true);
+                    setEmailOnFocus(true);
+                  }}
+                  onBlur={() => setEmailOnFocus(false)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
                   onChangeText={(value) =>
                     setCredentials((prevData) => ({
@@ -64,12 +75,23 @@ export default function Login({ navigation }) {
                     }))
                   }
                   value={credentials.email}
+                  inputMode="email"
+                  keyboardType="email-address"
                 />
                 <TextInput
-                  style={styles.input}
+                  style={
+                    passwordOnFocus
+                      ? [styles.input, styles.inputOnFocus]
+                      : styles.input
+                  }
                   placeholder="Пароль"
+                  placeholderTextColor="#bdbdbd"
                   secureTextEntry={true}
-                  onFocus={() => setIsKeyboardVisible(true)}
+                  onFocus={() => {
+                    setIsKeyboardVisible(true);
+                    setPasswordOnFocus(true);
+                  }}
+                  onBlur={() => setPasswordOnFocus(false)}
                   onSubmitEditing={() => setIsKeyboardVisible(false)}
                   onChangeText={(value) =>
                     setCredentials((prevData) => ({
@@ -82,10 +104,13 @@ export default function Login({ navigation }) {
                 <TouchableOpacity activeOpacity={0.5} onPress={handleSubmit}>
                   <Text style={styles.button}>Увійти</Text>
                 </TouchableOpacity>
-                <Text
-                  style={styles.text}
-                  onPress={() => navigation.navigate('Registration')}>
-                  Немає аккаунта? Зареєструватися
+                <Text style={styles.text}>
+                  Немає аккаунта?{' '}
+                  <Text
+                    style={{ color: '#ff6c00' }}
+                    onPress={() => navigation.navigate('Registration')}>
+                    Зареєструватися
+                  </Text>
                 </Text>
               </View>
             </View>
@@ -165,6 +190,10 @@ const styles = StyleSheet.create({
 
     borderRadius: 8,
     backgroundColor: '#f6f6f6',
+  },
+  inputOnFocus: {
+    backgroundColor: '#fff',
+    borderColor: '#ff6c00',
   },
   button: {
     padding: 13,
