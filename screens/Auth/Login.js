@@ -36,6 +36,8 @@ export default function Login({ navigation }) {
   const handleSubmit = () => {
     hideKeyboard();
     console.log('credentials :>> ', credentials);
+    navigation.navigate('Login', { screen: 'Posts' });
+
     setCredentials(initialData);
   };
 
