@@ -40,9 +40,12 @@ export default function Registration({ navigation }) {
     Keyboard.dismiss();
   };
 
+  // navigation.navigate('Login')
+
   const handleSubmit = () => {
     hideKeyboard();
     console.log('credentials :>> ', credentials);
+    navigation.navigate('Login', { screen: 'Posts' });
     setCredentials(initialData);
   };
 
