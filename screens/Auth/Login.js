@@ -24,8 +24,10 @@ const initialData = {
 export default function Login({ navigation }) {
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
   const [credentials, setCredentials] = useState(initialData);
+  // to style when focused ===================================
   const [emailOnFocus, setEmailOnFocus] = useState(false);
   const [passwordOnFocus, setPasswordOnFocus] = useState(false);
+  // to set password visible =================================
   const [isPasswordSecured, setIsPasswordSecured] = useState(true);
 
   const hideKeyboard = () => {
@@ -36,8 +38,9 @@ export default function Login({ navigation }) {
   const handleSubmit = () => {
     hideKeyboard();
     console.log('credentials :>> ', credentials);
-    navigation.navigate('Login', { screen: 'Posts' });
-
+    // temporary before redux =============================
+    navigation.navigate('MainRoot', { screen: 'Posts' });
+    // ====================================================
     setCredentials(initialData);
   };
 
