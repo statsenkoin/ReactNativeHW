@@ -45,9 +45,6 @@ export default function Registration({ navigation }) {
   const handleSubmit = () => {
     hideKeyboard();
     console.log('credentials :>> ', credentials);
-    // temporary before redux =============================
-    navigation.navigate('MainRoot', { screen: 'Posts' });
-    // ====================================================
     setCredentials(initialData);
   };
 
