@@ -12,7 +12,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { useRoute } from './router';
 
 export default function App() {
-  const routung = useRoute(null);
+  const routung = useRoute({});
 
   let [fontsLoaded] = useFonts({
     Roboto_400Regular,
