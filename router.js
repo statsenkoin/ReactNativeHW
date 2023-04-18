@@ -28,9 +28,11 @@ const mainTabNavigatorOptions = {
     fontFamily: 'Roboto_500Medium',
     fontSize: 17,
   },
+
   tabBarShowLabel: false,
   tabBarStyle: {
     height: 60,
+    display: 'flex',
   },
 };
 const mainTabHomeScreenOptions = {
@@ -39,37 +41,45 @@ const mainTabHomeScreenOptions = {
     <Feather name="grid" size={24} color="#21212177" />
   ),
 };
+const mainTabCreatePostScreenOptions = ({ navigation }) => ({
+  tabBarButton: () => (
+    <TouchableOpacity
+      // onPress={() => navigation.navigate('Create Post')}
+      onPress={() => navigation.navigate('Home', { screen: 'Create Post' })}
+      style={{
+        backgroundColor: '#FF6C00',
+        width: 70,
+        height: 40,
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginTop: 10,
+      }}>
+      <AntDesign name="plus" size={20} color="#fff" />
+    </TouchableOpacity>
+  ),
+});
+
 // const mainTabCreatePostScreenOptions = ({ navigation }) => ({
-//   tabBarButton: (props) => (
+//   headerLeft: () => (
 //     <TouchableOpacity
-//       onPress={() => navigation.navigate('Create Post')}
-//       title="Press me"
-//       color="#fff"
-//       style={{
-//         backgroundColor: '#FF6C00',
-//         width: 70,
-//         height: 40,
-//         borderRadius: 20,
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         marginTop: 10,
-//       }}>
-//       <AntDesign name="plus" size={20} color="#fff" />
+//       onPress={() => navigation.navigate('Home')}
+//       style={{ padding: 16 }}>
+//       <Feather name="arrow-left" size={24} color="rgba(33, 33, 33, 0.8)" />
 //     </TouchableOpacity>
 //   ),
+//   tabBarStyle: { display: 'none' },
+//   tabBarIcon: ({ focused, size, color }) => (
+//     <AntDesign name="plus" size={20} color="#fff" />
+//   ),
+//   tabBarIconStyle: {
+//     backgroundColor: '#FF6C00',
+//     width: 70,
+//     height: 40,
+//     borderRadius: 20,
+//     margin: 10,
+//   },
 // });
-const mainTabCreatePostScreenOptions = {
-  tabBarIcon: ({ focused, size, color }) => (
-    <AntDesign name="plus" size={20} color="#fff" />
-  ),
-  tabBarIconStyle: {
-    backgroundColor: '#FF6C00',
-    width: 70,
-    height: 40,
-    borderRadius: 20,
-    margin: 10,
-  },
-};
 const mainTabProfileScreenOptions = {
   tabBarIcon: ({ focused, size, color }) => (
     <Feather name="user" size={24} color="#21212177" />
