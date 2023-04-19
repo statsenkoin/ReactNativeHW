@@ -47,7 +47,7 @@ export default function CreatePostScreen() {
         <Feather name="map-pin" size={24} color="#bdbdbd" marginRight={4} />
         <TextInput
           style={styles.input}
-          placeholder="Місце..."
+          placeholder="Місцевість..."
           placeholderTextColor="#bdbdbd"
           inputMode="text"
           inlineImageLeft="favicon.png"
