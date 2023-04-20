@@ -68,7 +68,7 @@ export default function HomeScreen({ route, navigation }) {
       />
       <HomeStack.Screen name="Comments" component={CommentsScreen} />
       <HomeStack.Screen name="Map" component={MapScreen} />
-      <HomeStack.Screen name="Create Post" component={CreatePostScreen} />
+      {/* <HomeStack.Screen name="Create Post" component={CreatePostScreen} /> */}
     </HomeStack.Navigator>
   );
 }
